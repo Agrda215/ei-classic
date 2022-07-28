@@ -38,8 +38,8 @@ document.getElementsByClassName("prestige")[0].onclick = () => {
 
 setInterval(() => {
     game.points = game.points.add(1)
-    game.layers[0].gain = game.points.pow(new Decimal(1).div(game.layers[0].exponent)).mul(game.layers[0].req).floor()
-    game.layers[0].gameReq = game.layers[0].gain.pow(new Decimal(1).div(game.layers[0].exponent)).mul(game.layers[0].req).floor()
+    game.layers[0].gain = game.points.pow(new Decimal(1).mul(game.layers[0].exponent)).mul(game.layers[0].req).floor()
+    game.layers[0].gameReq = game.layers[0].gain.pow(new Decimal(1).mul(game.layers[0].exponent)).mul(game.layers[0].req).floor()
     document.getElementById("number1").innerText = game.points
     document.getElementsByClassName("instant")[0].innerText = "You Have " + game.layers[0].startData.resource + " " + game.layers[0].prestigeResource + "."
     document.getElementsByClassName("prestige")[0].innerHTML = "Reset +" + game.layers[0].gain + " Coins.<br>Next at " + game.layers[0].gameReq + " Points."
