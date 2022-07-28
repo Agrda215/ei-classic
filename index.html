@@ -46,6 +46,16 @@
             display: block;
         }
 
+        span.points {
+            z-index: inherit;
+            font-weight: bold;
+        }
+
+        span#number1{
+            font-weight: 300 !important;
+            color: var(--points);
+        }
+
         :root{
             --height-blank:25px;
             --points:rgb(128,128, 128)
@@ -53,6 +63,7 @@
     </style>
 </head>
 <body>
+    <span class="points">You Have <span id="number1">0</span> Points.</span>
     <span type="main-display" class="instant"></span>
     <span type="prestige-button" class="instant">
         <button class="prestige"></button>
