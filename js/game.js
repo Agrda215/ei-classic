@@ -29,6 +29,13 @@ game.layers = [{
     }
 }]
 
+document.getElementsByClassName("prestige")[0].onclick = () => {
+    if (game.layers[0].gain.gt(1)) {
+        game.layers[0].startData.resource = game.layers[0].startData.resource.add(game.layers[0].gain)
+        game.points = new Decimal(0)
+    }
+}
+
 setInterval(() => {
     game.points = game.points.add(1)
     game.layers[0].gain = game.layers[0].gain.pow(new Decimal(1).div(game.layers[0].exponent)).mul(game.layers[0].req).floor()
