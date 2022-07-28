@@ -1,5 +1,6 @@
 let game = []
 game.points = new Decimal(0)
+game.gain = new Decimal(1)
 var says = [""]
 var css = ["font-family:Comic Sans MS;font-size:31px;"]
 game.layers = [{
@@ -67,7 +68,7 @@ document.getElementsByClassName("prestige")[0].onclick = () => {
 
 setInterval(() => {
     says[0] = "Not Enough Money! need to " + game.layers[0].upgrades["11"].cost.sub(game.layers[0].startData.resource) + " coins."
-    game.points = game.points.add(1)
+    game.points = game.points.add(game.gain)
     game.layers[0].gain = game.points.pow(new Decimal(1).mul(game.layers[0].exponent)).div(game.layers[0].req).floor()
     game.layers[0].gameReq = game.layers[0].gain.pow(new Decimal(1).mul(game.layers[0].exponent)).mul(game.layers[0].req).floor()
     game.layers[0].upgrades["11"].effectDesc = () => {
@@ -83,4 +84,5 @@ setInterval(() => {
     document.getElementsByClassName("resourceName")[0].innerText = game.layers[0].prestigeResource
     document.getElementsByClassName("prestige")[0].style.backgroundColor = game.layers[0].prestigeButtonStyle.backgroundColor()
     document.getElementsByClassName("instant")[2].style.height = game.layers[0].layouts.contents[2].style.height
+    if(hasUpgrade(0, "11") && game.gain.gte(5)) game.gain = game.gain.mul(5)
  }, 100);
