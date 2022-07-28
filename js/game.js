@@ -21,6 +21,7 @@ game.layers = [{
     exponent:0.5,
     gameReq:new Decimal(10),
     req:new Decimal(10),
+    gain:new Decimal(0),
     prestigeButtonStyle:{
         backgroundColor() {
             return game.layers[0].color
