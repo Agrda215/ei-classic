@@ -27,5 +27,5 @@ game.layers = [{
 
 setInterval(() => {
     game.points = game.points.add(1)
-    document.getElementsByClassName("istant")[0].innerText = "You Have " + game.layers[0].startData.resource + " " + game.layers[0].prestigeResource + "."
+    document.getElementsByClassName("instant")[0].innerText = "You Have " + game.layers[0].startData.resource + " " + game.layers[0].prestigeResource + "."
  }, 100);
