@@ -54,7 +54,7 @@ let BuyUpgrade = (layerNum, id) => {
         game.layers[layerNum].startData.resource = game.layers[layerNum].startData.resource.sub(game.layers[layerNum].upgrades[id].cost)
         game.layers[layerNum].upgrades[id].bought += 1
     } else {
-       console.log(says[0], css[0]);
+       console.log("%c" + says[0], css[0]);
     }
 }
 
