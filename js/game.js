@@ -14,5 +14,12 @@ game.layers = [{
             {type:"blank", style:{height:"30px"}},
             {type:"upgrades"},
         ]
+    },
+    type:"normal",
+    color:"rgb(128, 128, 128)",
+    prestigeButtonStyle:{
+        backgroundColor() {
+            return game.layers[0].color
+        }
     }
 }]
