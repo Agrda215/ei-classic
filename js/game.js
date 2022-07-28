@@ -1,5 +1,7 @@
 let game = []
 game.points = new Decimal(0)
+var says = [""]
+var css = ["font-family:Comic Sans MS;font-size:31px;"]
 game.layers = [{
     startData:{
         unlocked:true,
@@ -47,6 +49,15 @@ function hasUpgrade(layerNum, id) {
     return game.layers[layerNum].upgrades[id].bought >= 1
 }
 
+let BuyUpgrade = (layerNum, id) => {
+    if (game.layers[layerNum].startData.resource.gte(game.layers[layerNum].upgrades[id].cost)) {
+        game.layers[layerNum].startData.resource = game.layers[layerNum].startData.resource.sub(game.layers[layerNum].upgrades[id].cost)
+        game.layers[layerNum].upgrades[id].bought += 1
+    } else {
+       console.log(says[0], css[0]);
+    }
+}
+
 document.getElementsByClassName("prestige")[0].onclick = () => {
     if (game.layers[0].gain.gt(1)) {
         game.layers[0].startData.resource = game.layers[0].startData.resource.add(game.layers[0].gain)
@@ -55,6 +66,7 @@ document.getElementsByClassName("prestige")[0].onclick = () => {
 }
 
 setInterval(() => {
+    says[0] = "Not Enough Money! need to " + game.layers[0].upgrades["11"].cost.sub(game.layers[0].startData.resource) + " coins."
     game.points = game.points.add(1)
     game.layers[0].gain = game.points.pow(new Decimal(1).mul(game.layers[0].exponent)).div(game.layers[0].req).floor()
     game.layers[0].gameReq = game.layers[0].gain.pow(new Decimal(1).mul(game.layers[0].exponent)).mul(game.layers[0].req).floor()
