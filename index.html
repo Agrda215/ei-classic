@@ -10,9 +10,43 @@
             font-size: 25px;
             color: black;
         }
+
+        span[type="blank"].instant {
+            font-size: 23px;
+            background-color: transparent;
+            height: var(--height-blank);
+        }
+
+        span[type="display-text"].instant {
+            font-size: 25px;
+            color: black;
+        }
+
+        span[type="display-image"].instant img {
+            display: inline;
+        }
+
+        body {
+            display: block;
+        }
+
+        button.prestige {
+            cursor: pointer;
+            border-radius: 20%;
+        }
+
+        :root{
+            --height-blank:25px;
+            --points:rgb(128,128, 128)
+        }
     </style>
 </head>
 <body>
-    <span type="main-display" class="instant">0</span>
+    <span type="main-display" class="instant"></span>
+    <span type="prestige-button" class="instant">
+        <button class="prestige"></button>
+    </span>
+    <span type="blank" class="instant"></span>
+    <span type="display-text" class="instant"></span>
 </body>
 </html>
