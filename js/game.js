@@ -43,5 +43,6 @@ setInterval(() => {
     document.getElementById("number1").innerText = game.points
     document.getElementsByClassName("instant")[0].innerText = "You Have " + game.layers[0].startData.resource + " " + game.layers[0].prestigeResource + "."
     document.getElementsByClassName("prestige")[0].innerHTML = "Reset +" + game.layers[0].gain + " Coins.<br>Next at " + game.layers[0].gameReq + " Points."
+    document.getElementsByClassName("prestige")[0].style.backgroundColor = game.layers[0].prestigeButtonStyle.backgroundColor()
     document.getElementsByClassName("instant")[2].style.height = game.layers[0].layouts.contents[2].style.height
  }, 100);
