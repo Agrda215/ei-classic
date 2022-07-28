@@ -19,6 +19,7 @@ game.layers = [{
     color:"rgb(128, 128, 128)",
     prestigeResource:"coins",
     exponent:0.5,
+    req:new Decimal(10),
     prestigeButtonStyle:{
         backgroundColor() {
             return game.layers[0].color
@@ -28,7 +29,8 @@ game.layers = [{
 
 setInterval(() => {
     game.points = game.points.add(1)
+    game.layers[0].gain = game.points.pow(new Decimal(1).div(game.layers[0].exponent)).div(game.layers[0].req)
     document.getElementsByClassName("instant")[0].innerText = "You Have " + game.layers[0].startData.resource + " " + game.layers[0].prestigeResource + "."
-    document.getElementsByClassName("prestige")[0].innerText = "Reset +" + game.points.pow(game.layes[0].exponent)
+    document.getElementsByClassName("prestige")[0].innerHTML = "Reset +" + game.layers[0].gain + " Coins.<br>Next at " + game.points.pow(new Decimal(1).div(game.layers[0].exponent)).div(game.layers[0].req) + " Points."
     document.getElementsByClassName("instant")[2].style.height = game.layers[0].layouts.contents[2].style.height
  }, 100);
