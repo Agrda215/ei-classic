@@ -65,8 +65,10 @@ function hasUpgrade(layerNum, id) {
 
 let BuyUpgrade = (layerNum, id, consoleNum) => {
     if (game.layers[layerNum].startData.resource.gte(game.layers[layerNum].upgrades[id].cost)) {
-        game.layers[layerNum].startData.resource = game.layers[layerNum].startData.resource.sub(game.layers[layerNum].upgrades[id].cost)
-        game.layers[layerNum].upgrades[id].bought += 1
+        if (game.layers[0].upgrades[id].bought >= 1) {
+             game.layers[layerNum].startData.resource = game.layers[layerNum].startData.resource.sub(game.layers[layerNum].upgrades[id].cost)
+             game.layers[layerNum].upgrades[id].bought += 1
+        }
     } else {
        console.log("%c" + says[consoleNum], css[0]);
     }
