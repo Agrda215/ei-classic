@@ -42,7 +42,19 @@ game.layers = [{
                 return "x" + game.layers[0].upgrades["11"].effect();
             },
             bought:0
-        }
+        },
+        12:{
+            title:"Boosted",
+            description:"x3 point gain.",
+            cost:new Decimal(7),
+            effect() {
+                return new Decimal(3)
+            },
+            effectDesc() {
+                return "x" + game.layers[0].upgrades["12"].effect();
+            },
+            bought:0
+        },
     }
 }]
 
@@ -50,12 +62,12 @@ function hasUpgrade(layerNum, id) {
     return game.layers[layerNum].upgrades[id].bought >= 1
 }
 
-let BuyUpgrade = (layerNum, id) => {
+let BuyUpgrade = (layerNum, id, consoleNum) => {
     if (game.layers[layerNum].startData.resource.gte(game.layers[layerNum].upgrades[id].cost)) {
         game.layers[layerNum].startData.resource = game.layers[layerNum].startData.resource.sub(game.layers[layerNum].upgrades[id].cost)
         game.layers[layerNum].upgrades[id].bought += 1
     } else {
-       console.log("%c" + says[0], css[0]);
+       console.log("%c" + says[consoleNum], css[0]);
     }
 }
 
@@ -66,13 +78,21 @@ document.getElementsByClassName("prestige")[0].onclick = () => {
     }
 }
 
+for (let i = 0; i < 1; i++) {
+    says.push("")
+}
+
 setInterval(() => {
     says[0] = "Not Enough Money! need to " + game.layers[0].upgrades["11"].cost.sub(game.layers[0].startData.resource) + " coins."
+    says[1] = "Not Enough Money! need to " + game.layers[0].upgrades["12"].cost.sub(game.layers[0].startData.resource) + " coins."
     game.points = game.points.add(game.gain)
     game.layers[0].gain = game.points.pow(new Decimal(1).mul(game.layers[0].exponent)).div(game.layers[0].req).floor()
     game.layers[0].gameReq = game.layers[0].gain.pow(new Decimal(1).mul(game.layers[0].exponent)).mul(game.layers[0].req).floor()
     game.layers[0].upgrades["11"].effectDesc = () => {
         return "x" + game.layers[0].upgrades["11"].effect()
+    }
+    game.layers[0].upgrades["12"].effectDesc = () => {
+        return "x" + game.layers[0].upgrades["12"].effect()
     }
     document.getElementById("number1").innerText = game.points
     document.getElementsByClassName("instant")[0].innerText = "You Have " + game.layers[0].startData.resource + " " + game.layers[0].prestigeResource + "."
@@ -82,6 +102,11 @@ setInterval(() => {
     document.getElementsByClassName("currentlyUpg")[0].innerText = game.layers[0].upgrades["11"].effectDesc()
     document.getElementsByClassName("upgradeCost")[0].innerText = game.layers[0].upgrades["11"].cost
     document.getElementsByClassName("resourceName")[0].innerText = game.layers[0].prestigeResource
+    document.getElementsByClassName("upgradeTitle")[1].innerText = game.layers[0].upgrades["12"].title
+    document.getElementsByClassName("upgradeDesc")[1].innerText = game.layers[0].upgrades["12"].description
+    document.getElementsByClassName("currentlyUpg")[1].innerText = game.layers[0].upgrades["12"].effectDesc()
+    document.getElementsByClassName("upgradeCost")[1].innerText = game.layers[0].upgrades["12"].cost
+    document.getElementsByClassName("resourceName")[1].innerText = game.layers[0].prestigeResource
     document.getElementsByClassName("prestige")[0].style.backgroundColor = game.layers[0].prestigeButtonStyle.backgroundColor()
     document.getElementsByClassName("instant")[2].style.height = game.layers[0].layouts.contents[2].style.height
     if(hasUpgrade(0, "11") && game.gain.gte(5)) game.gain = game.gain.mul(5)

@@ -19,8 +19,8 @@ upgrades:{
 ### FEATURES
 - BuyUpgrade(layernum, id): use always this now.
 - hasUpgrade(layernum, id): use thrown boolean this upgrade.
-- title: A be title from product.
-- description: i be description
+- title: A be title from product. (lengths:2 at 40.)
+- description: i be description (lengths:6 at 300.)
 - cost: a be cost from "Decimal" base with formula is $\log_{10}(C^2)$ than defalut is $10$ (Variables update generating a error), $\sqrt{U_{C_{11}}}$ if be so get!
 - effect():I am stronger a effect deault is $2$ be so ($1.01$ at $10^{10^{36}}$.)
 - effectDesc():Effect Descriptioning support tags for `document.getElementById(...).innerHTML = //text` text of tags than Sup (a<sup>2</sup>, <span style="color:yellow;">a Thing Yellow!</span>) 
