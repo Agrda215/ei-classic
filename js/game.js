@@ -1,6 +1,7 @@
 let game = []
 game.points = new Decimal(0)
 game.gain = new Decimal(1)
+game.gainNum = 0;
 var says = [""]
 var css = ["font-family:Comic Sans MS;font-size:31px;"]
 game.layers = [{
@@ -109,5 +110,8 @@ setInterval(() => {
     document.getElementsByClassName("resourceName")[1].innerText = game.layers[0].prestigeResource
     document.getElementsByClassName("prestige")[0].style.backgroundColor = game.layers[0].prestigeButtonStyle.backgroundColor()
     document.getElementsByClassName("instant")[2].style.height = game.layers[0].layouts.contents[2].style.height
-    if(hasUpgrade(0, "11") && game.gain == new Decimal(1)) game.gain = game.gain.mul(5)
+    if(hasUpgrade(0, "11") && game.gainNum == 1) {
+         game.gain = game.gain.mul(5) 
+         gain.gainNum *= 5
+    }
  }, 100);
